@@ -33,7 +33,7 @@ app.post('/sendmail', function(req, res) {
     <p><h3> You are receiving this because you left one or more tasks on in-progress on JIRA.</h3></p>
     <p><h5>You can safely ignore this email if you're still working on the mentioned issue(s).</h5></p>`;
   const mailOptions = {
-    from: 'mohd.sh@cgiandi.com',
+    from: process.env.EMAIL,
     to: email,
     subject: 'Jira Task(s) Still In Progress',
     html: html,
