@@ -9,6 +9,7 @@ const app = express().use(bodyParser.json());
 app.listen(process.env.PORT);
 
 app.post('/sendmail', function(req, res) {
+  console.log(req.headers.authorization);
   if (req.headers.authorization === process.env.AUTH) {
     let { username, email, issues } = req.body;
     let issueItems = [];
@@ -41,9 +42,9 @@ app.post('/sendmail', function(req, res) {
     };
     smtpTransport.sendMail(mailOptions, (err, info) => {
       if (err) {
-        res.send('An error occured');
+        res.status(301).send('An error occured');
       }
     });
     res.send('success');
-  } else res.send('Authroization Failed');
+  } else res.status(401).send('Authroization Failed');
 });
