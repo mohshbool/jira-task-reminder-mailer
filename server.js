@@ -9,7 +9,6 @@ const app = express().use(bodyParser.json());
 app.listen(process.env.PORT);
 
 app.post('/sendmail', function(req, res) {
-  console.log(req.headers.authorization);
   if (req.headers.authorization === process.env.AUTH) {
     let { username, email, issues } = req.body;
     let issueItems = [];
